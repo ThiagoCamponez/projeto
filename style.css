@@ -94,12 +94,15 @@ body {
   /*Position: absolute; libera propriedades como: right, left, buttom e top, para posicionar o objeto em qualquer lugar*/
   transform: translateY(-50%);/*Para alinhar o span no 50% do botton*/
   top: 50%;/*Para alinhar o span no 50% do botton*/
-  right: 0;/*Para alinhar do lado direito do botton*/
+  left: 0;/*Para alinhar do lado direito do botton*/
+  animation: slide-back 0.3s;
 }
 
 .light #switch button {
-  right: 50%;
-  left: initial;
+  animation: slide-in 0.4s forwards;
+}
+#switch button:hover {
+  outline: 8px solid var(--highlight-color);
 }
 
 #switch span {
@@ -179,4 +182,25 @@ footer {
   .light {
     --bg-url: url(assets/bg-desktop-light.jpg);
   }
+}
+
+/*Animation*/
+@keyframes slide-in {
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+
+}
+
+@keyframes slide-back {
+  from {
+    left: 50%;
+  }
+
+to {
+  left: 0;
+}
 }
