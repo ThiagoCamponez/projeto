@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family= Inter:wght@400;500 & display =swap');
+
+:root {
+  --text-color: white;
+  --bg-url: url(assets/bg-mobile.jpg);
+  --stroke-color: rgba(255, 255, 255, 0.5);
+  --surface-color: rgba(255, 255, 255, 0.1);
+  --surface-color-hover: rgba(255, 255, 255, 0.05);
+  --highlight-color: rgba(255, 255, 255, 0.2);
+  --switch-bg-url: url(assets/moon-stars.svg);
+}
+
+.light {
+  --text-color: black;
+  --bg-url: url(assets/bg-mobile-light.jpg);
+  --stroke-color: rgba(0, 0, 0, 0.5);
+  --surface-color: rgba(0, 0, 0, 0.05);
+  --border-color: 1.5px solid rgba(0, 0, 0, 0.5);
+  --surface-color-hover: rgba(0, 0, 0, 0.02);
+  --highlight-color: rgba(0, 0, 0, 0.1);
+  --switch-bg-url: url(assets/sun.svg);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body * {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color);
+}
+body {
+  /*
+  background-image: url(assets/bg-mobile.jpg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-color: cover;*/
+  /*abaixo, atalho para todas essas propriedades que estão acima*/
+  /*background: color image repeat position/size*/
+  background: var(--bg-url) no-repeat top center/cover;
+}
+
+#container { /* Adicione uma borda para entender como está sendo a divisão das caixas (block): 
+  border: 1px solid red;*/
+  width: 360px;
+  margin: 56px auto 0px;
+  padding: 0 24px;
+}
+
+/*Profile*/
+#profile {
+  text-align: center;
+  padding: 24px;
+}
+
+#profile img {
+  display: block;/*Para transformar de inline para block, inline não consegue centralizar*/
+  margin: auto;/*Consegue centralizar elementos com display in block*/
+  border: var(--border-color);
+  border-radius: 50%;
+}
+/*Outra opção seria utilizar o elemento pai, tipo:
+#profile {
+  text-align: center;
+}*/
+
+#profile p {
+  font-weight: 500;
+  line-height: 24px;
+  margin-top: 8px;
+}
+
+/*Switch*/
+
+#switch {
+  position: relative;/*Irá relativisar o position absolute do switch button*/
+  width: 64px;
+  margin: 4px auto;
+}
+
+#switch button {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 9999px;
+  background: #ffff var(--switch-bg-url) center no-repeat;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  position: absolute;/*Para fazer uma sobreposição de camadas, no caso, entre o button e o span*/
+  z-index: 1;/*Propriedade para mudar os andares, no caso, mudou o button para o andar 1, o span ficou no andar 0*/
+  /*Position: absolute; libera propriedades como: right, left, buttom e top, para posicionar o objeto em qualquer lugar*/
+  transform: translateY(-50%);/*Para alinhar o span no 50% do botton*/
+  top: 50%;/*Para alinhar o span no 50% do botton*/
+  right: 0;/*Para alinhar do lado direito do botton*/
+}
+
+.light #switch button {
+  right: 50%;
+  left: initial;
+}
+
+#switch span {
+  display: block;/*A tag span tem por padrão o display inline, e não aceita algumas propriedades, então deve passar para block*/
+  width: 64px;
+  height: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 9999px;
+}
+
+/*Links*/
+ul {
+  list-style: none;
+  display: flex;/*Ajuste flexível dos blocos*/
+  flex-direction: column;/*Definindo como colunas*/
+  gap: 16px;/*Dando espaçamento entre os blocos*/
+  padding: 24px 0;
+}
+
+ul li a {
+  display: flex;
+  align-items: center;/*Alinha os itens no centro do block, horizontalmente*/
+  justify-content: center;/*Alinha os itens no centro do block, verticalmente*/
+  padding: 16px 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px;
+  
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);/*Filtro para o Safari - obs no figma - consultado no caniuse.com*/
+  
+  text-decoration: none;/*para tirar o underline de link de baixo das palavras*/
+  font-weight: 500;
+  
+  transition: background 0.2s;
+}
+/*pseudo seletor (quando passa o mouse em cima)*/
+ul li a:hover {
+  background: var(--surface-color-hover);
+  border: 1.5px solid var(--text-color);
+}
+
+/*social links*/
+#social-links {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+  font-size: 24px;
+}
+
+#social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+#social-links a:hover {
+  background: var(--highlight-color);
+}
+
+footer {
+  text-align: center;
+  padding: 24px 0;
+  font-size: 14px;
+}
